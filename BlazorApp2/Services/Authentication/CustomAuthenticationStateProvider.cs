@@ -1,6 +1,7 @@
 ﻿using BlazorApp2.Models.Requests;
 using BlazorApp2.Models.Responses;
 using BlazorApp2.Services.TokenValidators;
+using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -14,23 +15,24 @@ namespace BlazorApp2.Services.Authentication
 {
     public class CustomAuthenticationStateProvider : AuthenticationStateProvider
     {
-        private readonly ILocalStorageService _localStorageService;
         private readonly TokenValidator _tokenValidator;
         private readonly IHttpClientFactory _httpClientFactory;
+        private readonly ISessionStorageService _sessionStorage;
 
         public CustomAuthenticationStateProvider(
-            ILocalStorageService localStorageService,
             IHttpClientFactory httpClientFactory,
-            TokenValidator tokenValidator)
+            TokenValidator tokenValidator,
+            ISessionStorageService sessionStorage
+        )
         {
-            _localStorageService = localStorageService;
             _httpClientFactory = httpClientFactory;
             _tokenValidator = tokenValidator;
+            _sessionStorage = sessionStorage;
         }
         private readonly ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity());
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var authenticatedUserResponseText = _localStorageService.GetItem("authenticatedUserResponseText");
+            var authenticatedUserResponseText = await _sessionStorage.GetItemAsync<string>("authenticatedUserResponseText");
             var anonymous = new ClaimsPrincipal(new ClaimsIdentity() { });
             if (string.IsNullOrEmpty(authenticatedUserResponseText))
             {
@@ -45,7 +47,7 @@ namespace BlazorApp2.Services.Authentication
             catch (SecurityTokenExpiredException)
             {
                 await Refresh();
-                authenticatedUserResponseText = _localStorageService.GetItem("authenticatedUserResponseText");
+                authenticatedUserResponseText = await _sessionStorage.GetItemAsync<string>("authenticatedUserResponseText");
             }
             catch (Exception)
             {
@@ -65,7 +67,7 @@ namespace BlazorApp2.Services.Authentication
 
         private async Task<bool> Refresh()
         {
-            var authenticatedUserResponseText = _localStorageService.GetItem("authenticatedUserResponseText");
+            var authenticatedUserResponseText = await _sessionStorage.GetItemAsync<string>("authenticatedUserResponseText");
             AuthenticatedUserResponse authenticatedUserResponse = JsonConvert.DeserializeObject<AuthenticatedUserResponse>(authenticatedUserResponseText);
             RefreshRequest request = new RefreshRequest()
             {
@@ -86,7 +88,7 @@ namespace BlazorApp2.Services.Authentication
             {
                 return await Task.FromResult(false);
             }
-            _localStorageService.SetItem("authenticatedUserResponseText", authenticatedUserResponseText);
+            await _sessionStorage.SetItemAsync("authenticatedUserResponseText", authenticatedUserResponseText);
             return await Task.FromResult(true);
         }
 

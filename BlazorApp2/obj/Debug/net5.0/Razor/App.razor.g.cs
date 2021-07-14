@@ -110,7 +110,7 @@ using BlazorApp2.Services.Authentication;
 #line hidden
 #nullable disable
                 ));
-                __builder2.AddAttribute(4, "PreferExactMatches", 
+                __builder2.AddAttribute(4, "PreferExactMatches", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<System.Boolean>(
 #nullable restore
 #line 2 "C:\Users\frno\source\repos\Authentication\BlazorApp2\App.razor"
                                                                          true
@@ -118,7 +118,7 @@ using BlazorApp2.Services.Authentication;
 #line default
 #line hidden
 #nullable disable
-                );
+                ));
                 __builder2.AddAttribute(5, "Found", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.RouteData>)((routeData) => (__builder3) => {
                     __builder3.OpenComponent<Microsoft.AspNetCore.Components.RouteView>(6);
                     __builder3.AddAttribute(7, "RouteData", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.RouteData>(

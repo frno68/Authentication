@@ -1,8 +1,8 @@
 using BlazorApp2.Data;
 using BlazorApp2.Models;
-using BlazorApp2.Services;
 using BlazorApp2.Services.Authentication;
 using BlazorApp2.Services.TokenValidators;
+using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
@@ -50,20 +50,15 @@ namespace BlazorApp2
             });
             services.AddAuthorization();
             services.AddSingleton<TokenValidator>();
-            services.AddSingleton<ILocalStorageService, LocalStorageService>();
-            services.AddSingleton<IAccountService, AccountService>();
-            services.AddSingleton<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddSingleton<WeatherForecastService>();
+            services.AddBlazoredSessionStorage();
+            services.AddScoped<IAccountService, AccountService>();
+            services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddHttpClient("AuthenticationService", client =>
             {
                 client.BaseAddress = new Uri("https://localhost:44395/");
                 client.DefaultRequestHeaders.Add("User-Agent", "Blazor");
             });
-            //services.AddMvc()
-            //    .AddJsonOptions(options => {
-            //        options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
-            //    });
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -67,3 +67,10 @@ C:\Users\frno\source\repos\Authentication\BlazorApp2\obj\Debug\net5.0\ref\Blazor
 C:\Users\frno\source\repos\Authentication\BlazorApp2\obj\Debug\net5.0\BlazorApp2.pdb
 C:\Users\frno\source\repos\Authentication\BlazorApp2\obj\Debug\net5.0\BlazorApp2.genruntimeconfig.cache
 C:\Users\frno\source\repos\Authentication\BlazorApp2\obj\Debug\net5.0\BlazorApp2.csproj.AssemblyReference.cache
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Blazored.SessionStorage.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Bunit.Core.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.AspNetCore.Components.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Forms.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.JSInterop.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\System.IO.Pipelines.dll

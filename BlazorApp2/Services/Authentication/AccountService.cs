@@ -1,5 +1,6 @@
 ﻿using BlazorApp2.Models.Requests;
 using BlazorApp2.Models.Responses;
+using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -27,16 +28,15 @@ namespace BlazorApp2.Services.Authentication
     {
         private readonly AuthenticationStateProvider _customAuthenticationStateProvider;
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ILocalStorageService _localStorageService;
+        private readonly ISessionStorageService _sessionStorage;
         public AccountService(
-			ILocalStorageService localStorageService,
-			AuthenticationStateProvider customAuthenticationStateProvider,
-			IHttpClientFactory httpClientFactory
-		)
-        {
-            _localStorageService = localStorageService;
+            AuthenticationStateProvider customAuthenticationStateProvider,
+            IHttpClientFactory httpClientFactory,
+            ISessionStorageService sessionStorage
+        ){
             _customAuthenticationStateProvider = customAuthenticationStateProvider;
             _httpClientFactory = httpClientFactory;
+            _sessionStorage = sessionStorage;
         }
         public async Task<bool> RegisterAsync(
             string username,
@@ -64,9 +64,6 @@ namespace BlazorApp2.Services.Authentication
             {
                 return await Task.FromResult(false);
             }
-            //var authenticatedUserResponseText = await response.Content.ReadAsStringAsync(); 
-            //_localStorageService.SetItem("authenticatedUserResponseText", authenticatedUserResponseText);
-            //(_customAuthenticationStateProvider as CustomAuthenticationStateProvider).NotifyAuthenticationStateChanged();
             return await Task.FromResult(true);
         }
         public async Task<bool> LoginAsync(string userName, string password)
@@ -91,13 +88,13 @@ namespace BlazorApp2.Services.Authentication
                 return await Task.FromResult(false);
             }
             var authenticatedUserResponseText = await response.Content.ReadAsStringAsync();
-            _localStorageService.SetItem("authenticatedUserResponseText", authenticatedUserResponseText);
+            await _sessionStorage.SetItemAsync("authenticatedUserResponseText", authenticatedUserResponseText);
             (_customAuthenticationStateProvider as CustomAuthenticationStateProvider).NotifyAuthenticationStateChanged();
             return await Task.FromResult(true);
         }
         public async Task<bool> LogoutAsync()
 		{
-            _localStorageService.RemoveItem("authenticatedUserResponseText");
+            await _sessionStorage.RemoveItemAsync("authenticatedUserResponseText");
             (_customAuthenticationStateProvider as CustomAuthenticationStateProvider).NotifyAuthenticationStateChanged();
             return await Task.FromResult(true);
 		}

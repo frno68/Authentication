@@ -17,44 +17,41 @@ namespace BlazorApp2.Services.Authentication
     {
         private readonly TokenValidator _tokenValidator;
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly ISessionStorageService _sessionStorage;
+        private readonly IStoredTokenInformation _storedTokenInformation;
 
         public CustomAuthenticationStateProvider(
             IHttpClientFactory httpClientFactory,
             TokenValidator tokenValidator,
-            ISessionStorageService sessionStorage
-        )
+            IStoredTokenInformation storedTokenInformation)
         {
             _httpClientFactory = httpClientFactory;
             _tokenValidator = tokenValidator;
-            _sessionStorage = sessionStorage;
+            _storedTokenInformation = storedTokenInformation;
         }
         private readonly ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity());
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            var authenticatedUserResponseText = await _sessionStorage.GetItemAsync<string>("authenticatedUserResponseText");
+            TokenInformation tokenInformation = await _storedTokenInformation.GetAsync();
             var anonymous = new ClaimsPrincipal(new ClaimsIdentity() { });
-            if (string.IsNullOrEmpty(authenticatedUserResponseText))
+            if (tokenInformation == null)
             {
                 return await Task.FromResult(new AuthenticationState(anonymous));
             }
-            AuthenticatedUserResponse authenticatedUserResponse = 
-                JsonConvert.DeserializeObject<AuthenticatedUserResponse>(authenticatedUserResponseText);
             try
             {
-                SecurityToken securityToken = _tokenValidator.Validate(authenticatedUserResponse.AccessToken);
+                SecurityToken securityToken = _tokenValidator.Validate(tokenInformation.AccessToken);
             }
             catch (SecurityTokenExpiredException)
             {
                 await Refresh();
-                authenticatedUserResponseText = await _sessionStorage.GetItemAsync<string>("authenticatedUserResponseText");
+                tokenInformation = await _storedTokenInformation.GetAsync();
             }
             catch (Exception)
             {
                 return await Task.FromResult(new AuthenticationState(anonymous));
             }
 
-            var jwtSecurityToken = new JwtSecurityToken(authenticatedUserResponse.AccessToken);
+            var jwtSecurityToken = new JwtSecurityToken(tokenInformation.AccessToken);
             var claims = jwtSecurityToken.Claims;
             var claimsIdentity = new ClaimsIdentity(claims, "auth");
             var claimsPrincipal = new ClaimsPrincipal(claimsIdentity);
@@ -67,11 +64,11 @@ namespace BlazorApp2.Services.Authentication
 
         private async Task<bool> Refresh()
         {
-            var authenticatedUserResponseText = await _sessionStorage.GetItemAsync<string>("authenticatedUserResponseText");
-            AuthenticatedUserResponse authenticatedUserResponse = JsonConvert.DeserializeObject<AuthenticatedUserResponse>(authenticatedUserResponseText);
+            TokenInformation tokenInformation = await _storedTokenInformation.GetAsync();
+            await _storedTokenInformation.RemoveAsync();
             RefreshRequest request = new RefreshRequest()
             {
-                RefreshToken = authenticatedUserResponse.RefreshToken
+                RefreshToken = tokenInformation.RefreshToken
             };
             HttpRequestMessage requestMessage = new HttpRequestMessage(HttpMethod.Post, "refresh")
             {
@@ -82,13 +79,12 @@ namespace BlazorApp2.Services.Authentication
             var client = _httpClientFactory.CreateClient("AuthenticationService");
             var response = await client.SendAsync(requestMessage);
             var responseStatusCode = response.StatusCode;
-            authenticatedUserResponseText = await response.Content.ReadAsStringAsync();
-
+            var tokenInformationJson = await response.Content.ReadAsStringAsync();
             if (responseStatusCode.ToString() != "OK")
             {
                 return await Task.FromResult(false);
             }
-            await _sessionStorage.SetItemAsync("authenticatedUserResponseText", authenticatedUserResponseText);
+            await _storedTokenInformation.SetAsync(tokenInformationJson);
             return await Task.FromResult(true);
         }
 

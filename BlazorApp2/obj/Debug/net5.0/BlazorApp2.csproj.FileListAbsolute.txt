@@ -25,14 +25,11 @@ C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\ref\Blazor
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\BlazorApp2.pdb
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\BlazorApp2.Views.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\BlazorApp2.Views.pdb
-C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.AspNetCore.Authorization.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.AspNetCore.Metadata.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.IdentityModel.JsonWebTokens.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.IdentityModel.Logging.dll
-C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
-C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Newtonsoft.Json.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\System.IdentityModel.Tokens.Jwt.dll

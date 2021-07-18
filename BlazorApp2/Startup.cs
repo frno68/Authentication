@@ -3,16 +3,13 @@ using BlazorApp2.Models;
 using BlazorApp2.Services.Authentication;
 using BlazorApp2.Services.TokenValidators;
 using Blazored.SessionStorage;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.IdentityModel.Tokens;
 using System;
-using System.Text;
 
 namespace BlazorApp2
 {
@@ -35,19 +32,7 @@ namespace BlazorApp2
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddHttpContextAccessor();
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(o =>
-            {
-                o.TokenValidationParameters = new TokenValidationParameters()
-                {
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(authenticationConfiguration.AccessTokenSecret)),
-                    ValidateIssuerSigningKey = true,
-                    ValidIssuer = authenticationConfiguration.Issuer,
-                    ValidateIssuer = true,
-                    ValidAudience = authenticationConfiguration.Audience,
-                    ValidateAudience = true,
-                    ClockSkew=TimeSpan.Zero
-                };
-            });
+            services.AddAuthentication();
             services.AddAuthorization();
             services.AddSingleton<TokenValidator>();
             services.AddSingleton<WeatherForecastService>();

@@ -1,5 +1,4 @@
 ﻿using BlazorApp2.Models.Requests;
-using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Newtonsoft.Json;
 using System.Net.Http;
@@ -27,16 +26,16 @@ namespace BlazorApp2.Services.Authentication
     {
         private readonly AuthenticationStateProvider _customAuthenticationStateProvider;
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IStoredTokenInformation _storedTokenInformation;
+        private readonly ITokenInformationStorage _tokenInformationStorage;
         public AccountService(
             AuthenticationStateProvider customAuthenticationStateProvider,
             IHttpClientFactory httpClientFactory,
-            IStoredTokenInformation storedTokenInformation
+            ITokenInformationStorage tokenInformationStorage
         )
         {
             _customAuthenticationStateProvider = customAuthenticationStateProvider;
             _httpClientFactory = httpClientFactory;
-            _storedTokenInformation = storedTokenInformation;
+            _tokenInformationStorage = tokenInformationStorage;
         }
         public async Task<bool> RegisterAsync(
             string username,
@@ -64,6 +63,10 @@ namespace BlazorApp2.Services.Authentication
             {
                 return await Task.FromResult(false);
             }
+
+            var tokenInformationJson = await response.Content.ReadAsStringAsync();
+            await _tokenInformationStorage.SetAsync(tokenInformationJson);
+            (_customAuthenticationStateProvider as CustomAuthenticationStateProvider).NotifyAuthenticationStateChanged();
             return await Task.FromResult(true);
         }
         public async Task<bool> LoginAsync(string userName, string password)
@@ -86,14 +89,15 @@ namespace BlazorApp2.Services.Authentication
             {
                 return await Task.FromResult(false);
             }
+
             var tokenInformationJson = await response.Content.ReadAsStringAsync();
-            await _storedTokenInformation.SetAsync(tokenInformationJson);
+            await _tokenInformationStorage.SetAsync(tokenInformationJson);
             (_customAuthenticationStateProvider as CustomAuthenticationStateProvider).NotifyAuthenticationStateChanged();
             return await Task.FromResult(true);
         }
         public async Task<bool> LogoutAsync()
 		{
-            await _storedTokenInformation.RemoveAsync();
+            await _tokenInformationStorage.RemoveAsync();
             (_customAuthenticationStateProvider as CustomAuthenticationStateProvider).NotifyAuthenticationStateChanged();
             return await Task.FromResult(true);
 		}

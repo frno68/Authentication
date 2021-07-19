@@ -1,7 +1,6 @@
 ﻿using BlazorApp2.Models.Requests;
 using BlazorApp2.Models.Responses;
 using BlazorApp2.Services.TokenValidators;
-using Blazored.SessionStorage;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
@@ -17,21 +16,21 @@ namespace BlazorApp2.Services.Authentication
     {
         private readonly TokenValidator _tokenValidator;
         private readonly IHttpClientFactory _httpClientFactory;
-        private readonly IStoredTokenInformation _storedTokenInformation;
+        private readonly ITokenInformationStorage _tokenInformationStorage;
 
         public CustomAuthenticationStateProvider(
             IHttpClientFactory httpClientFactory,
             TokenValidator tokenValidator,
-            IStoredTokenInformation storedTokenInformation)
+            ITokenInformationStorage tokenInformationStorage)
         {
             _httpClientFactory = httpClientFactory;
             _tokenValidator = tokenValidator;
-            _storedTokenInformation = storedTokenInformation;
+            _tokenInformationStorage = tokenInformationStorage;
         }
         private readonly ClaimsPrincipal claimsPrincipal = new ClaimsPrincipal(new ClaimsIdentity());
         public override async Task<AuthenticationState> GetAuthenticationStateAsync()
         {
-            TokenInformation tokenInformation = await _storedTokenInformation.GetAsync();
+            TokenInformation tokenInformation = await _tokenInformationStorage.GetAsync();
             var anonymous = new ClaimsPrincipal(new ClaimsIdentity() { });
             if (tokenInformation == null)
             {
@@ -44,7 +43,7 @@ namespace BlazorApp2.Services.Authentication
             catch (SecurityTokenExpiredException)
             {
                 await Refresh();
-                tokenInformation = await _storedTokenInformation.GetAsync();
+                tokenInformation = await _tokenInformationStorage.GetAsync();
             }
             catch (Exception)
             {
@@ -64,8 +63,8 @@ namespace BlazorApp2.Services.Authentication
 
         private async Task<bool> Refresh()
         {
-            TokenInformation tokenInformation = await _storedTokenInformation.GetAsync();
-            await _storedTokenInformation.RemoveAsync();
+            TokenInformation tokenInformation = await _tokenInformationStorage.GetAsync();
+            await _tokenInformationStorage.RemoveAsync();
             RefreshRequest request = new RefreshRequest()
             {
                 RefreshToken = tokenInformation.RefreshToken
@@ -84,7 +83,7 @@ namespace BlazorApp2.Services.Authentication
             {
                 return await Task.FromResult(false);
             }
-            await _storedTokenInformation.SetAsync(tokenInformationJson);
+            await _tokenInformationStorage.SetAsync(tokenInformationJson);
             return await Task.FromResult(true);
         }
 

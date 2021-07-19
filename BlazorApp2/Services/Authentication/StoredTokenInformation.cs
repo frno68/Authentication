@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace BlazorApp2.Services.Authentication
 {
-    public interface IStoredTokenInformation
+    public interface ITokenInformationStorage
     {
         public Task<TokenInformation> GetAsync();
         public ValueTask SetAsync(string value);
         public ValueTask RemoveAsync();
     }
 
-    public class StoredTokenInformation: IStoredTokenInformation
+    public class TokenInformationStorage: ITokenInformationStorage
     {
         private readonly string _key; 
         private readonly ISessionStorageService _sessionStorage;
         private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public StoredTokenInformation(ISessionStorageService sessionStorage, 
+        public TokenInformationStorage(ISessionStorageService sessionStorage, 
             IHttpContextAccessor httpContextAccessor)
         {
             _sessionStorage = sessionStorage;

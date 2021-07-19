@@ -37,7 +37,7 @@ namespace BlazorApp2
             services.AddSingleton<TokenValidator>();
             services.AddSingleton<WeatherForecastService>();
             services.AddBlazoredSessionStorage();
-            services.AddScoped<IStoredTokenInformation, StoredTokenInformation>();
+            services.AddScoped<ITokenInformationStorage, TokenInformationStorage>();
             services.AddScoped<IAccountService, AccountService>();
             services.AddScoped<AuthenticationStateProvider, CustomAuthenticationStateProvider>();
             services.AddHttpClient("AuthenticationService", client =>

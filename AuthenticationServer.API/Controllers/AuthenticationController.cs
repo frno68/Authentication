@@ -61,8 +61,10 @@ namespace AuthenticationServer.API.Controllers
                 Username = registerRequest.Username,
                 PasswordHash = passwordHash
             };
-            User response = await _userRepository.Create(registratonUser);
-            return Ok();
+            User user = await _userRepository.Create(registratonUser);
+
+            AuthenticatedUserResponse response = await _authenticator.Authenticate(user);
+            return Ok(response);
         }
 
         [HttpPost("login")]
@@ -82,7 +84,6 @@ namespace AuthenticationServer.API.Controllers
             {
                 return Unauthorized();
             }
-
             AuthenticatedUserResponse response = await _authenticator.Authenticate(user);
             return Ok(response);
         }

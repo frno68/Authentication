@@ -71,3 +71,6 @@ C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.AspNetCore.Components.Web.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.JSInterop.dll
 C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\System.IO.Pipelines.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.dll
+C:\Users\frno\source\repos\Authentication\BlazorApp2\bin\Debug\net5.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "FK3EzjuwvvC7tAqBPTzJgeXIHlMZFoKRk8b93eE7q02qxrYYTwxrHHt2ABRdffFOnEzHJ+mdvC/b/WdltMNEmw==",
+  "dgSpecHash": "gjrdEMq+JtqvY7i+L6oV3FpfD3vxzhxRs7tkr36IeuqjlV59H+PrEGmC5s1QR1ax3qT2ARQmlyQtHAYRy7OLBw==",
   "success": true,
   "projectFilePath": "C:\\Users\\frno\\source\\repos\\Authentication\\BlazorApp2\\BlazorApp2.csproj",
   "expectedPackageFiles": [
@@ -10,6 +10,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
+    "C:\\Users\\frno\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\5.0.7\\microsoft.aspnetcore.authentication.jwtbearer.5.0.7.nupkg.sha512",
     "C:\\Users\\frno\\.nuget\\packages\\microsoft.aspnetcore.authorization\\5.0.5\\microsoft.aspnetcore.authorization.5.0.5.nupkg.sha512",
     "C:\\Users\\frno\\.nuget\\packages\\microsoft.aspnetcore.components\\5.0.5\\microsoft.aspnetcore.components.5.0.5.nupkg.sha512",
     "C:\\Users\\frno\\.nuget\\packages\\microsoft.aspnetcore.components.analyzers\\5.0.5\\microsoft.aspnetcore.components.analyzers.5.0.5.nupkg.sha512",
@@ -44,6 +45,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.extensions.webencoders\\2.2.0\\microsoft.extensions.webencoders.2.2.0.nupkg.sha512",
     "C:\\Users\\frno\\.nuget\\packages\\microsoft.identitymodel.jsonwebtokens\\6.11.0\\microsoft.identitymodel.jsonwebtokens.6.11.0.nupkg.sha512",
     "C:\\Users\\frno\\.nuget\\packages\\microsoft.identitymodel.logging\\6.11.0\\microsoft.identitymodel.logging.6.11.0.nupkg.sha512",
+    "C:\\Users\\frno\\.nuget\\packages\\microsoft.identitymodel.protocols\\6.7.1\\microsoft.identitymodel.protocols.6.7.1.nupkg.sha512",
+    "C:\\Users\\frno\\.nuget\\packages\\microsoft.identitymodel.protocols.openidconnect\\6.7.1\\microsoft.identitymodel.protocols.openidconnect.6.7.1.nupkg.sha512",
     "C:\\Users\\frno\\.nuget\\packages\\microsoft.identitymodel.tokens\\6.11.0\\microsoft.identitymodel.tokens.6.11.0.nupkg.sha512",
     "C:\\Users\\frno\\.nuget\\packages\\microsoft.jsinterop\\5.0.5\\microsoft.jsinterop.5.0.5.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.net.http.headers\\2.2.0\\microsoft.net.http.headers.2.2.0.nupkg.sha512",

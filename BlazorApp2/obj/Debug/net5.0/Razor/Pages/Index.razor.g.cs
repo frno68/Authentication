@@ -103,15 +103,13 @@ using System.Security.Claims;
             __builder.AddAttribute(1, "Authorized", (Microsoft.AspNetCore.Components.RenderFragment<Microsoft.AspNetCore.Components.Authorization.AuthenticationState>)((context) => (__builder2) => {
                 __builder2.OpenElement(2, "h1");
                 __builder2.AddContent(3, "Hello, ");
-                __builder2.AddContent(4, 
 #nullable restore
 #line 8 "C:\Users\frno\source\repos\Authentication\BlazorApp2\Pages\Index.razor"
-                    context.User.Identity.Name
+__builder2.AddContent(4, context.User.Identity.Name);
 
 #line default
 #line hidden
 #nullable disable
-                );
                 __builder2.CloseElement();
                 __builder2.AddMarkupContent(5, "\r\n        ");
                 __builder2.OpenElement(6, "div");
@@ -124,25 +122,21 @@ using System.Security.Claims;
 #line hidden
 #nullable disable
                 __builder2.OpenElement(7, "div");
-                __builder2.AddContent(8, 
 #nullable restore
 #line 12 "C:\Users\frno\source\repos\Authentication\BlazorApp2\Pages\Index.razor"
-                      claim.Type
+__builder2.AddContent(8, claim.Type);
 
 #line default
 #line hidden
 #nullable disable
-                );
                 __builder2.AddContent(9, " - ");
-                __builder2.AddContent(10, 
 #nullable restore
 #line 12 "C:\Users\frno\source\repos\Authentication\BlazorApp2\Pages\Index.razor"
-                                    claim.Value
+__builder2.AddContent(10, claim.Value);
 
 #line default
 #line hidden
 #nullable disable
-                );
                 __builder2.CloseElement();
 #nullable restore
 #line 13 "C:\Users\frno\source\repos\Authentication\BlazorApp2\Pages\Index.razor"

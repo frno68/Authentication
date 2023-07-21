@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "bkqwW0N+RS+pSeowwYGG2oM+DYWeWM8P0lxa7PeZpFSx71sVVyuwkr9V5QUBP3SHIdeQ+vWWqQj9TnIIqJE8Vw==",
+  "dgSpecHash": "xHA8GyOxXEnskBZxY3QpEGkJu3/060PtwPIL9rfJxu+ZijTs0fRS+J6KoWXbucg+pb2dlhGZSVOvQb9sbQCDZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\frno\\source\\repos\\Authentication\\AuthenticationServer.API\\AuthenticationServer.API.csproj",
   "expectedPackageFiles": [

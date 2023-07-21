@@ -115,15 +115,13 @@ using BlazorApp2.Services.Authentication;
             __builder.OpenElement(12, "div");
             __builder.AddAttribute(13, "class", "content px-4");
             __builder.AddAttribute(14, "b-g438hy8nqh");
-            __builder.AddContent(15, 
 #nullable restore
 #line 14 "C:\Users\frno\source\repos\Authentication\BlazorApp2\Shared\MainLayout.razor"
-             Body
+__builder.AddContent(15, Body);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.CloseElement();
             __builder.CloseElement();

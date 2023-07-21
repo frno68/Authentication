@@ -1,0 +1,16 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "791b76ef-08e4-417c-bed0-400609a7b6b1": {
+      "ProjectGuid": "791b76ef-08e4-417c-bed0-400609a7b6b1",
+      "DisplayName": "BlazorApp2",
+      "ColorIndex": 0
+    },
+    "3f0c0c8a-59a6-4be4-acb2-d7d2dc116324": {
+      "ProjectGuid": "3f0c0c8a-59a6-4be4-acb2-d7d2dc116324",
+      "DisplayName": "AuthenticationServer.API",
+      "ColorIndex": 1
+    }
+  },
+  "NextColorIndex": 2
+}

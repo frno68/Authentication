@@ -19,7 +19,7 @@ namespace BlazorApp2.Services.TokenValidators
         {
             TokenValidationParameters validationParameters = new TokenValidationParameters()
             {
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration.AccessTokenSecret)),
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("XXXX-XXXX-XXXX-XXXX")),
                 ValidateIssuerSigningKey = true,
                 ValidIssuer = _configuration.Issuer,
                 ValidateIssuer = true,

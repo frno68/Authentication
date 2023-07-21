@@ -147,7 +147,7 @@ using BlazorApp2.Services.Authentication;
             __builder.OpenComponent<Microsoft.AspNetCore.Components.Routing.NavLink>(20);
             __builder.AddAttribute(21, "class", "nav-link");
             __builder.AddAttribute(22, "href", "");
-            __builder.AddAttribute(23, "Match", Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.Routing.NavLinkMatch>(
+            __builder.AddAttribute(23, "Match", global::Microsoft.AspNetCore.Components.CompilerServices.RuntimeHelpers.TypeCheck<Microsoft.AspNetCore.Components.Routing.NavLinkMatch>(
 #nullable restore
 #line 11 "C:\Users\frno\source\repos\Authentication\BlazorApp2\Shared\NavMenu.razor"
                                                      NavLinkMatch.All

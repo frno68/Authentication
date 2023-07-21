@@ -102,15 +102,13 @@ using BlazorApp2.Services.Authentication;
             __builder.AddMarkupContent(0, "<h1>Counter</h1>\r\n\r\n");
             __builder.OpenElement(1, "p");
             __builder.AddContent(2, "Current count: ");
-            __builder.AddContent(3, 
 #nullable restore
 #line 5 "C:\Users\frno\source\repos\Authentication\BlazorApp2\Pages\Counter.razor"
-                   currentCount
+__builder.AddContent(3, currentCount);
 
 #line default
 #line hidden
 #nullable disable
-            );
             __builder.CloseElement();
             __builder.AddMarkupContent(4, "\r\n\r\n");
             __builder.OpenElement(5, "button");
